@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "1db85013-2216-4446-9d84-216b8703b77e",
+		"name": "Josue",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Coleccion1 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//setTimeout(() => {}, 10000)\r",
+							"\r",
+							"if (responseCode.code == 200000000) {\r",
+							"    tests[\"La respuesta de la API es correcta\"] = true;\r",
+							"} else {\r",
+							"    tests[\"La respuesta de la API es incorrecta\"] = responseCode.code === pm.iterationData.get(\"resultadoTest\");\r",
+							"}\r",
+							"\r",
+							"if (responseCode.code == 200) {\r",
+							"    tests[\"La respuesta de la API es correcta, esta mostrnado un codigo \"  + responseCode.code ]   = true;\r",
+							"} else {\r",
+							"   tests[\"La respuesta de la API es incorrecta, debe mostrar 400 y esta mostrando\" + responseCode.code ] = false;\r",
+							"}\r",
+							"\r",
+							"\r",
+							"pm.test(\"Respuesta menos a 10000ms\", function(){\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content type presente\", function(){\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Resultado URL\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.url).to.eql(\"https://www.postman-echo.com/get\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Resultado Host\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.headers.host).to.eql(\"www.postman-echo.com\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Resultado Host\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.headers.host).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"No es vacio\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"     pm.expect(jsonData.headers.host).that.not.empty;\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"jwt_token\", pm.response.json().access_token)\r",
+							"\r",
+							"if (responseCode.code == 200) {\r",
+							"    var response = JSON.parse(responseBody);\r",
+							"\r",
+							"    var url = response.url;\r",
+							"    pm.environment.set(\"url\",url);\r",
+							"}\r",
+							"\r",
+							"if (responseCode.code == 200) {\r",
+							"    var response = JSON.parse(responseBody);\r",
+							"\r",
+							"    var url = response.headers.host;\r",
+							"    pm.environment.set(\"urll\",url);\r",
+							"}\r",
+							"\r",
+							"var josue = response.url; \r",
+							"// o puedo ser \r",
+							"//jsonData = pm.response.json(); \r",
+							"pm.environment.set(\"josue\",url);\r",
+							"\r",
+							"pm.environment.set(\"NuevaVariableJOSUEJOSUEJOSUE\", response.url);\r",
+							"\r",
+							"postman.setEnvironmentVariable(\"token\", JSON.parse(responseBody).url);\r",
+							"\r",
+							"pm.test(\"Validando\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.headers.host).to.have.lengthOf('20');\r",
+							"});\r",
+							"\r",
+							"//sobre\r",
+							"pm.test(\"Validando 2 \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.headers.host).to.have.lengthOf.above(10);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validando 3\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.headers.host).to.have.lengthOf.below(50);\r",
+							"});\r",
+							"//setTimeout(() => {}, 30000);\r",
+							"//si funciona es tiempo de espera\r",
+							"//setTimeout(function(){ \r",
+							"//\r",
+							"//     console.log('sleep for ten min');\r",
+							"//    }, 600000);\r",
+							"//setTimeout(function(){console.log('waiting...')},1000000)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://www.postman-echo.com/get",
+					"protocol": "https",
+					"host": [
+						"www",
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"get"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
